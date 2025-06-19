@@ -6,8 +6,12 @@ main_blueprint = Blueprint('main', __name__)
 
 @main_blueprint.route('/')
 async def main_page():
-    quotes = Quote.query.all()
-    return render_template('main.html', quotes=quotes)
+    if current_user.is_authenticated:
+        page = request.args.get('page', 1, type=int)
+        paginated_quotes = Quote.query.filter(Quote.user_id != current_user.id).paginate(page=page, per_page=2)
+        return render_template('main.html', quotes=paginated_quotes)
+    
+    return render_template('main.html')
 
 @main_blueprint.route('/add')
 @login_required
@@ -33,7 +37,9 @@ async def add_quote_post():
 @main_blueprint.route('/profile')
 @login_required
 async def profile():
-    return render_template('profile.html')
+    page = request.args.get('page', 1, type=int)
+    paginated_quotes = Quote.query.filter_by(author=current_user).paginate(page=page, per_page=2)
+    return render_template('profile.html', quotes=paginated_quotes)
 
 @main_blueprint.route('/profile', methods=['POST'])
 async def avatar_change():

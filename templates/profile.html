@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="posts-container">
-        {% for quote in current_user.quotes %}
+        {% for quote in quotes %}
         <div class="post-container">
             <h2>{{ quote.text }}</h2>
             <p>{{ quote.created_at.date() }}</p>
@@ -45,6 +45,19 @@
             </div>
         </div>
         {% endfor %}
+        <div class="page-container">
+            {% for page_num in quotes.iter_pages(left_current=1, right_current=1, left_edge=1, right_edge=1) %}
+            {% if page_num %}
+            {% if page_num == quotes.page %}
+                <a href="{{ url_for('main.profile', page=page_num) }}" class="active" style="text-decoration: none;">{{ page_num }}</a>
+            {% else %}
+                <a href="{{ url_for('main.profile', page=page_num) }}" class="inactive" style="text-decoration: none;">{{ page_num }}</a>
+            {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+            {% endfor %}
+        </div>
     </div>
 </main>
 

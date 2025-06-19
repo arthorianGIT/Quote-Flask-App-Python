@@ -81,6 +81,32 @@ main {
     gap: 45px;
 }
 
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 30%;
+    gap: 7px;
+}
+
+.active {
+    padding: 3px 7px;
+    border: 2px solid rgb(43, 43, 250);
+    color: white;
+    background-color: rgb(66, 66, 252);
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.inactive {
+    padding: 1px 5px;
+    border: 2px solid rgb(43, 43, 250);
+    font-weight: 600;
+    color: white;
+    transition: all 0.2s;
+}
+
 .auth-bar a {
     padding: 8px;
     border-radius: 7px;
@@ -150,4 +176,13 @@ main {
 
 #logo:hover {
     color: lightgreen;
+}
+
+.active:hover {
+    color: rgb(209, 209, 209);
+}
+
+.inactive:hover {
+    background-color: rgb(66, 66, 252);
+    transform: scale(1.3);
 }
