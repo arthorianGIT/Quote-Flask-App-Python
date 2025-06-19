@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth_css/login.css') }}">
+<title>Login</title>
+{% endblock %}
+
+{% block content %}
+
+<main>
+    {% for category, message in get_flashed_messages(True) %}
+    <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+    <div class="form-container">
+        <form method="post">
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email" class="email-input"><br>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password" class="password-input"><br>
+            <input type="checkbox" name="remember" id="remember" class="remember"> <label for="remember" class="remember-label">Remember me</label><br>
+            <input type="submit" value="Login" class="submit-button">
+        </form>
+    </div>
+</main>
+
+
+{% endblock %}

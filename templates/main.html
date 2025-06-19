@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main_css/main.css') }}">
+<title>Main Page</title>
+{% endblock %}
+
+{% block content %}
+
+<main>
+    {% for category, message in get_flashed_messages(True) %}
+    <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+    {% if current_user.is_authenticated %}
+        {% for quote in quotes %}
+        {% if quote.author.id != current_user.id %}
+            <div class="quote-container">
+                <h1>{{ quote.author.username }}</h1>
+                <h3>{{ quote.text }}</h3>
+                <p>{{ quote.created_at.date() }}</p>
+            </div>
+        {% endif %}
+        {% endfor %}
+    {% endif %}
+</main>
+
+{% endblock %}

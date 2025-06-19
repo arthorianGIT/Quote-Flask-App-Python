@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main_css/profile.css') }}">
+<title>Your Profile</title>
+{% endblock %}
+
+{% block content %}
+
+<main>
+    {% for category, message in get_flashed_messages(True) %}
+    <div class="flash {{ category }}">{{ message }}</div>
+    {% endfor %}
+    <div class="profile-container">
+        {% if current_user.avatar != 'None' %}
+        <img src="{{ url_for('static', filename='avatars/' ~ current_user.avatar) }}" alt="Your Avatar" width="170" height="100" style="margin-right: 20px; margin-top: 10px; margin-left: 5px; border-radius: 5px;">
+        <form method="post" class="change-form">
+            <label for="file" class="change-avatar">Choose Avatar
+            <input type="file" name="file" id="file" class="file-input" accept="image/*" style="display: none;"></label><br>
+            <input type="submit" value="Change Avatar">
+        </form>
+        {% else %}
+        <form method="post" class="choose-form">
+            <label for="file" class="choose-avatar">Choose Avatar
+            <input type="file" name="file" id="file" class="file-input" accept="image/*" style="display: none;"></label><br>
+            <input type="submit" value="Save Avatar">
+        </form>
+        {% endif %}
+        
+        <div class="profile-information">
+            <h2>Id: {{ current_user.id }}</h2>
+            <h2>Username: {{ current_user.username }}</h2>
+            <h2>Email: {{ current_user.email }}</h2>
+            <h3>Registered: {{ current_user.registered_at.date() }}</h3>
+        </div>
+    </div>
+    <div class="posts-container">
+        {% for quote in current_user.quotes %}
+        <div class="post-container">
+            <h2>{{ quote.text }}</h2>
+            <p>{{ quote.created_at.date() }}</p>
+            <div class="links">
+                <a href="quote/{{ quote.id }}/update" class="edit-link" style="text-decoration: none;">Edit</a>
+                <a href="quote/{{ quote.id }}/delete" class="delete-link" style="text-decoration: none;">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}

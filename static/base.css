@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+    background-image: url('./images/black-forest-upscaled.jpg');
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.navigation-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    backdrop-filter: blur(10px);
+    border: 2px solid black;
+}
+
+.auth-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 45px;
+}
+
+.auth-bar a {
+    padding: 8px;
+    border-radius: 7px;
+    color: white;
+    font-weight: 600;
+}
+
+#logo {
+    font-size: 22px;
+    color: white;
+    transition: all 0.2s;
+}
+
+.navigation-bar span {
+    color: lightgreen;
+    transition: all 0.2s;
+}
+
+.add-quote {
+    position: relative;
+    right: 125px;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.profile {
+    position: relative;
+    right: 300px;
+    padding: 8px;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.login {
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.signup {
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.logout {
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.add-quote:hover, .profile:hover {
+    border: 1px solid white;
+}
+
+.login:hover, .signup:hover {
+    border: 1px solid white;
+}
+
+.logout:hover {
+    border: 1px solid white;
+}
+
+#logo:hover {
+    color: lightgreen;
+}

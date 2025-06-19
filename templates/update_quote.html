@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main_css/update_quote.css') }}">
+<title>Edit Quote</title>
+{% endblock %}
+
+{% block content %}
+
+<main>
+    <div class="form-container">
+        <form method="post">
+            <label for="text">Edit text</label><br>
+            <textarea name="text" id="text" cols="30" rows="6">{{ quote.text }}</textarea><br>
+            <input type="submit" value="Edit Quote" class="submit-button">
+        </form>
+    </div>
+</main>
+
+{% endblock %}
